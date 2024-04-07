@@ -7,6 +7,7 @@ import { deleteRecord, listRecordsByUser, updateRecord } from '../../db/db';
 import { cors_policy } from '../utils';
 import { cf } from '../../lib/cloudflare';
 import { UpdateRecordParams } from '../../types/routes/dns';
+import jwt from 'jsonwebtoken';
 
 export const router = Router();
 router.use(cors_policy);
@@ -14,12 +15,6 @@ router.use(ClerkExpressRequireAuth())
 router.use(express.json());
 
 
-router.get(
-    '/auth',
-    (req: WithAuthProp<Request>, res: Response) => {
-        res.json(req.auth);
-    }
-);
 
 router.get(
     '/domains',
@@ -77,3 +72,18 @@ router.delete("/records/:record_id", async (req, res) => {
     const db_r = await updateRecord(rec.record_id, rec.ip)
     res.send(db_r);
   });
+
+router.get("/auth", (req, res)=>{
+    const userEmail = req.auth.claims?.email as string
+    const key = process.env.JWT_SECRET 
+    if(!key || !userEmail){
+        return res.status(500).send({msg: "server lost info"})
+    }
+    const data = {
+        email: userEmail
+    }
+    const token = jwt.sign(data, key, {
+        expiresIn: '30d'
+    })
+    res.send({token: token, msg: "success"})
+})

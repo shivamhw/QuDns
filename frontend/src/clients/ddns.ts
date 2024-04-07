@@ -98,11 +98,11 @@ export class ddns{
         })
         return res.data
     }
-    public async testAuth(){
+    public async getToken(){
         const res = await this.client.get("/user/auth")
         console.log(res.data)
         return res.data
-    }
+}
 
     public async createRecord(ip: string, subdomain: string | undefined, rootdomain: string | undefined, zone_id: string){
         const res = await this.client.post("/dns/records", {

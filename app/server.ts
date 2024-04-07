@@ -2,6 +2,7 @@ import { Express, static as static_ } from "express";
 import path from "path";
 import { router as userRouter } from "./routes/user"
 import {router as adminRouter} from './routes/admin'
+import {router as apiRouter } from "./routes/api"
 import { LooseAuthProp } from '@clerk/clerk-sdk-node';
 import { router as dnsRouter } from "./routes/dns"
 import { cors_policy } from './utils'
@@ -39,6 +40,7 @@ export class Server {
         this.app.use("/dns", dnsRouter)
         this.app.use("/user", userRouter)
         this.app.use("/admin", adminRouter)
+        this.app.use("/api", apiRouter)
     }
 
     public start(port: number) {
