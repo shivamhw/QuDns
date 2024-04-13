@@ -11,7 +11,6 @@ import { UserContext } from '../App';
 import Resutls from './Results';
 import { result } from './Results';
 import { BootstrapInput } from '../styles/componant_styles';
-import { Button } from '@mui/material';
 
 
 export default function CustomizedSelects() {
@@ -91,9 +90,6 @@ export default function CustomizedSelects() {
         Check Availability
       </LoadingButton>
      { result && <Resutls result={result}></Resutls>}
-     <Button onClick={ async()=>{
-      console.log("auth heck ", await ddns.getToken());
-     }}>Tet</Button>
       </Stack>
   );
 }

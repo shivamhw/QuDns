@@ -52,7 +52,7 @@ router.delete("/records/:record_id", async (req, res) => {
     res.send(resp)
   });  
 
-  router.put("/records", async (req, res) => {
+router.put("/records", async (req, res) => {
     const rec: UpdateRecordParams = req.body;
     const userEmail = req.auth.claims?.email as string
     if(!userEmail){
@@ -73,7 +73,7 @@ router.delete("/records/:record_id", async (req, res) => {
     res.send(db_r);
   });
 
-router.get("/auth", (req, res)=>{
+router.get("/token", (req, res)=>{
     const userEmail = req.auth.claims?.email as string
     const key = process.env.JWT_SECRET 
     if(!key || !userEmail){
@@ -83,7 +83,7 @@ router.get("/auth", (req, res)=>{
         email: userEmail
     }
     const token = jwt.sign(data, key, {
-        expiresIn: '30d'
+        expiresIn: '90d'
     })
     res.send({token: token, msg: "success"})
 })

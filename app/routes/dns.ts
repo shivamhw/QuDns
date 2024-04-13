@@ -5,7 +5,7 @@ import {
 } from '@clerk/clerk-sdk-node';
 import { CFRoot, Result } from "../../types/cloudflare";
 import {getDomainDetails, getRecord, listDomains, createRecord} from "../../db/db"
-import { UpdateRecordParams, CreateRecordParams, DeleteRecordParams } from '../../types/routes/dns'
+import { CreateRecordParams } from '../../types/routes/dns'
 import { cors_policy } from "../utils";
 
 

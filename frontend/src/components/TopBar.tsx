@@ -24,6 +24,11 @@ export default function TopBar() {
                     My Domains
                 </Button>
                 <Button variant="contained" onClick={() => {
+                    navigate("/token")
+                }}>
+                    manage tokens
+                </Button>
+                <Button variant="contained" onClick={() => {
                     signOut()
                 }}>
                     SignOut

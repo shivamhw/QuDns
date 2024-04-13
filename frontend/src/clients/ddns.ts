@@ -96,10 +96,10 @@ export class ddns{
                 subdomain: subdomain
             }
         })
-        return res.data
+    return res.data
     }
     public async getToken(){
-        const res = await this.client.get("/user/auth")
+        const res = await this.client.get("/user/token")
         console.log(res.data)
         return res.data
 }

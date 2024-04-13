@@ -6,6 +6,7 @@ import { ddns } from './clients/ddns';
 import Checkout from './pages/Checkout';
 import { ManageDomain } from './pages/ManageDomain';
 import { useUser } from '@clerk/clerk-react';
+import ManageToken from './pages/ManageToken';
 
 export type userContext = {
   ddnsClient : ddns | null
@@ -18,13 +19,6 @@ export const UserContext = React.createContext<userContext>({
   isLoaded: false
 });
 function App() {
-  // const { getToken, isLoaded } =  useAuth();
-  // React.useEffect(() => {
-  //    const updater = async () =>  {
-  //     await ddnsClient.setAuth(getToken);
-  //    }
-  //   updater()
-  // }, [getToken, isLoaded])
   console.log("this is home compoent")
   const { isLoaded } = useUser()
   return (
@@ -36,6 +30,7 @@ function App() {
         <Route path='/mydomains' element={<MyDomains/>}/>
         <Route path='/checkout' Component={() => (<Checkout />)}/>
         <Route path='/manage' Component={() => (<ManageDomain />)}/>
+        <Route path='/token' Component={() => (<ManageToken />)}/>
       </Routes>
     </BrowserRouter>
     </UserContext.Provider>
