@@ -1,0 +1,8 @@
+# .dockerignore
+dist
+node_modules
+README.md
+.env
+.vscode
+build
+package-lock.json

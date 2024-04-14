@@ -10,7 +10,7 @@ import { DeleteRecordParams, UpdateRecordParams } from '../../../types/routes/dn
 export class ddns{
     private static api : ddns
     private client : AxiosInstance
-    private constructor(baseUrl : string = "http://localhost:3000"){
+    private constructor(baseUrl : string = "/"){
         this.client = axios.create({
             baseURL: baseUrl,
             withCredentials: true 

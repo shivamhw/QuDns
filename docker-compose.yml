@@ -1,0 +1,7 @@
+services:
+  quidns:
+    image: shivamhw/quidns:v0.1
+    ports:
+      - 3080:3001
+    env_file:
+      - .env

@@ -23,16 +23,6 @@ export class Server {
 
     public applyMiddlewares(){
         this.app.use(cors_policy);
-        // this.app.use((req, res, next) => {
-        //     if (/(.ico|.js|.css|.jpg|.png|.map)$/i.test(req.path)) {
-        //         next();
-        //     } else {
-        //         res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-        //         res.header('Expires', '-1');
-        //         res.header('Pragma', 'no-cache');
-        //         res.sendFile(path.resolve("./") + "/build/frontend/index.html");
-        //     }
-        // });
         this.app.use(static_(path.resolve("./") + "/build/frontend"));
     }
 
@@ -41,10 +31,14 @@ export class Server {
         this.app.use("/user", userRouter)
         this.app.use("/admin", adminRouter)
         this.app.use("/api", apiRouter)
+        // adding to serve react app from express server
+        this.app.get('*', function(req, res) {
+            res.sendFile('index.html', {root: path.resolve("./build/frontend")});
+          });
     }
 
     public start(port: number) {
-        this.app.listen(port, () => {
+        this.app.listen(port, "0.0.0.0", () => {
             console.log(`server started on ${port}`)
         })
     }

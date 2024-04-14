@@ -32,3 +32,5 @@ node_modules/
 types/dist/
 build/*
 build
+frontend/bun.lockb
+bun.lockb
