@@ -1,9 +1,9 @@
 import { Button, Stack, TextField, Typography } from "@mui/material";
 import React, { useState } from "react";
-import TopBar from "../components/TopBar";
 import { result } from "../components/Results";
 import { UserContext } from "../App";
 import  { Link, useLocation } from 'react-router-dom'
+import ResponsiveAppBar from "../components/AppBar";
 
 export default function Checkout(){
     const ddns = React.useContext(UserContext).ddnsClient
@@ -19,6 +19,8 @@ export default function Checkout(){
         )
     }
     return (
+      <>
+              <ResponsiveAppBar></ResponsiveAppBar>
         <Stack
         alignItems="center"
         justifyContent='center'
@@ -26,7 +28,9 @@ export default function Checkout(){
           height: '100vh'
         }}
         spacing={2}>
-        <TopBar></TopBar>
+
+
+        {/* <TopBar></TopBar> */}
         <Typography variant="h4" gutterBottom>
             This is Your Domain {result.subdomain}
       </Typography>
@@ -41,5 +45,6 @@ export default function Checkout(){
         }
         }>Checkout</Button> : "" }
       </Stack>
+      </>
     )
 }

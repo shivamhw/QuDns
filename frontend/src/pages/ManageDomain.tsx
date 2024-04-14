@@ -1,9 +1,9 @@
 import { Box, Button, Stack, TextField, Typography } from '@mui/material';
 import * as React from 'react';
 import { useLocation } from 'react-router-dom';
-import TopBar from '../components/TopBar';
 import { UserContext } from '../App';
 import { Records } from '@prisma/client';
+import ResponsiveAppBar from '../components/AppBar';
 
 
 export function ManageDomain(){
@@ -13,6 +13,7 @@ export function ManageDomain(){
 
     return (
         <>
+        <ResponsiveAppBar></ResponsiveAppBar>
                 <Stack
         alignItems="center"
         justifyContent='center'
@@ -20,7 +21,9 @@ export function ManageDomain(){
           height: '100vh'
         }}
         spacing={2}>
-        <TopBar></TopBar>
+        {/* <TopBar></TopBar> */}
+        
+
         <Typography variant="h4" gutterBottom>
             This is Your Domain {record.cname}
       </Typography>

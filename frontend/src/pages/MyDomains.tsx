@@ -1,10 +1,10 @@
 import * as React from 'react';
-import TopBar from '../components/TopBar';
 import { useUser } from '@clerk/clerk-react';
 import { Stack } from '@mui/material';
 import { Records } from "@prisma/client";
 import ActionList from '../components/ActionList';
 import { UserContext } from '../App';
+import ResponsiveAppBar from '../components/AppBar';
 
 
 export default function MyDomains() {
@@ -21,6 +21,7 @@ export default function MyDomains() {
 
     return (
         <>
+        <ResponsiveAppBar></ResponsiveAppBar>
             <Stack
                 alignItems="center"
                 justifyContent='center'
@@ -28,7 +29,9 @@ export default function MyDomains() {
                     height: '100vh'
                 }}
                 spacing={2}>
-                <TopBar></TopBar>
+        
+
+                {/* <TopBar></TopBar> */}
                 {domains && <ActionList records={domains}></ActionList>}
             </Stack>
 

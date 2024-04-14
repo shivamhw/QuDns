@@ -50,7 +50,7 @@ export default function CustomizedSelects() {
         <Stack 
         sx={{
             maxWidth : '600px',
-            minWidth : '500px'
+            minWidth : {md: '500px', xs : '350px', sm : '400px'}
         }}>
       <FormControl sx={{ m: 1 }} variant="standard">
         <InputLabel htmlFor="demo-customized-textbox">SubDomain</InputLabel>

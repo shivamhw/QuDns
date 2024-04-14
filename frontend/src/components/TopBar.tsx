@@ -17,29 +17,29 @@ export default function TopBar() {
             }}>
                 Home
             </Button>
-            <SignedIn>
-                <Button variant="contained" onClick={() => {
-                    navigate("/mydomains")
-                }}>
-                    My Domains
+        <SignedIn>
+            <Button variant="contained" onClick={() => {
+                navigate("/mydomains")
+            }}>
+                My Domains
+            </Button>
+            <Button variant="contained" onClick={() => {
+                navigate("/token")
+            }}>
+                manage tokens
+            </Button>
+            <Button variant="contained" onClick={() => {
+                signOut()
+            }}>
+                SignOut
+            </Button>
+        </SignedIn>
+        <SignedOut>
+            <SignInButton>
+                <Button variant="contained" >
+                    SignIn
                 </Button>
-                <Button variant="contained" onClick={() => {
-                    navigate("/token")
-                }}>
-                    manage tokens
-                </Button>
-                <Button variant="contained" onClick={() => {
-                    signOut()
-                }}>
-                    SignOut
-                </Button>
-            </SignedIn>
-            <SignedOut>
-                <SignInButton>
-                    <Button variant="contained" >
-                        SignIn
-                    </Button>
-                </SignInButton>
-            </SignedOut>
+            </SignInButton>
+        </SignedOut>
         </Box>)
 }
