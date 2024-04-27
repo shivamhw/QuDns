@@ -19,7 +19,7 @@ export const UserContext = React.createContext<userContext>({
   isLoaded: false
 });
 function App() {
-  console.log("this is home compoent")
+  console.log("this is App compoent")
   const { isLoaded } = useUser()
   return (
     <UserContext.Provider value={{ddnsClient: ddnsClient,

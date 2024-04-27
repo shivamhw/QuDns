@@ -30,8 +30,6 @@ export default function MyDomains() {
                 }}
                 spacing={2}>
         
-
-                {/* <TopBar></TopBar> */}
                 {domains && <ActionList records={domains}></ActionList>}
             </Stack>
 

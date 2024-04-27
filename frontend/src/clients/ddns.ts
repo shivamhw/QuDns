@@ -15,7 +15,7 @@ export class ddns{
             baseURL: baseUrl,
             withCredentials: true 
         })
-        
+        this.client.defaults.validateStatus = () => true
         this.enableRetry()
         this.enableMiddleware()
     }
@@ -27,6 +27,11 @@ export class ddns{
             console.log("cached api client")
         }
         return this.api
+    }
+
+    public setBaseUrl(url : string){
+        console.log("setting base url to ", url)
+        this.client.defaults.baseURL = url
     }
 
     // TODO: this is a hack plz fix this
@@ -111,7 +116,7 @@ export class ddns{
                 ip: ip,
                 zone_id: zone_id
         })
-        return res.data
+        return res
     }
 
     public async updateRecord(req : UpdateRecordParams){

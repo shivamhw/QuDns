@@ -138,12 +138,13 @@ export function ResponsiveAppBar() {
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
+
+            <SignedIn>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
               <Avatar src="/broken-image.jpg" />
               </IconButton>
             </Tooltip>
-
             <Menu
               sx={{ mt: '45px' }}
               id="menu-appbar"
@@ -165,7 +166,7 @@ export function ResponsiveAppBar() {
                   <Typography textAlign="center">{setting}</Typography>
                 </MenuItem>
               ))} */}
-            <SignedIn>
+            
                 <MenuItem onClick={() => {
                     navigate("/mydomains")
                 }}>
@@ -181,18 +182,14 @@ export function ResponsiveAppBar() {
                 }}>
                     SignOut
                 </MenuItem>
+            
+            </Menu>
             </SignedIn>
-
             <SignedOut>
-                <SignInButton>
-                    <MenuItem >
-                        SignIn
-                    </MenuItem>
+              <SignInButton>
+                <Button variant='contained' >SignIN</Button>
                 </SignInButton>
             </SignedOut>
-
-            </Menu>
-
           </Box>
         </Toolbar>
       </Container>

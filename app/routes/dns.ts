@@ -13,13 +13,6 @@ export const router = express.Router();
 router.use(cors_policy);
 router.use(ClerkExpressRequireAuth())
 router.use(express.json());
-
-// const cf = new CloudFlare(process.env.CF_API_KEY || "", process.env.CF_ZONE_ID || "")
-// const cf = new CloudFlare(
-//   "SfYbxtOEyRGUYcoSWA0mWX7yKg2EOUXMkuiQPLlu"
-//   // "3edae60398e185759d65d31c3018825e"
-// );
-
 router.get("/domains/:domain", async (req, res) => {
   const name = req.params.domain as string || ""
   // TODO: add validation for name

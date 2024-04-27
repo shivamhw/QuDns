@@ -7,12 +7,14 @@ import IconButton from '@mui/material/IconButton';
 import SettingsIcon from '@mui/icons-material/Settings';
 import { Records } from '@prisma/client';
 import { useNavigate } from 'react-router-dom';
+import { Typography } from '@mui/material';
 
 
 export default function ActionList({ records } : {records : Records[]}) {
   const navigate = useNavigate();
   return (
     <Box>
+      { records.length > 0 ?
             <List >
                 {
                     records.map((rec) => {
@@ -38,6 +40,9 @@ export default function ActionList({ records } : {records : Records[]}) {
                     )
 }
             </List>
+            :
+            <Typography variant='h5'>No domains for user</Typography>
+}
     </Box>
   );
 }
