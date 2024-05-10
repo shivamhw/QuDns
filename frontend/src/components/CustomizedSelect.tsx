@@ -83,14 +83,14 @@ export default function CustomizedSelects() {
           onChange={handleChange}
           input={<BootstrapInput />}
         >
-  {
+  {/* {
             domains &&
             domains.length > 0 &&
             domains.map((rec) => {
               return <MenuItem key={rec.id} value={rec.rootDnsName}>{rec.rootDnsName}</MenuItem>
             })
           
-}
+} */}
 
         </Select>
       </FormControl>
