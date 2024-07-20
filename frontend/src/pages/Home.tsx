@@ -4,10 +4,8 @@ import CustomizedSelects from '../components/CustomizedSelect';
 import { useUser } from '@clerk/clerk-react';
 import ResponsiveAppBar from '../components/AppBar';
 import { Typography } from '@mui/material';
-
+import ErrorBoundary from '../components/ErrorBoundary';
 function App() {
-  const { isLoaded } = useUser()
-  console.log("is loaded ", isLoaded)
   return (
     <>
     <ResponsiveAppBar></ResponsiveAppBar>
@@ -22,9 +20,10 @@ function App() {
         <Typography variant="h2" gutterBottom>
         Search for domains
       </Typography>
+      <ErrorBoundary>
         <CustomizedSelects>
         </CustomizedSelects>
-
+        </ErrorBoundary>
       </Stack>
     </>
   )

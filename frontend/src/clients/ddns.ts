@@ -4,6 +4,7 @@ import axiosRetry from "axios-retry"
 import { Records } from "@prisma/client";
 import Cookies from "js-cookie";
 import { DeleteRecordParams, UpdateRecordParams } from '../../../types/routes/dns';
+import { error } from "console";
 
 
 
@@ -75,6 +76,9 @@ export class ddns{
     public async listDomains() : Promise<listDomain[]>{
         console.log("coookie before callin g", Cookies.get("__session"))
         const res = await this.client.get("/dns/domains")
+        if(res.status != 200){
+            throw new Error("fetching failed for listDomains")
+        }
         console.log(res.data)
         return res.data
     }

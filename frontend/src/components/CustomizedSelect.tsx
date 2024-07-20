@@ -38,13 +38,12 @@ export default function CustomizedSelects() {
       console.log("setting domain failed")
       setErr(true)
     }
-      // setDomains(r || [])
     }
     updater()
     if(isSignedIn){
       setErr(false)
     }
-  }, [isLoaded])
+  }, [isLoaded, isSignedIn])
 
   const handleChange = (e) => {
     const d = domains.find((item) => {
@@ -59,7 +58,7 @@ export default function CustomizedSelects() {
     return <Typography variant='h3' color='error'>backend connectivity failed :(</Typography> 
   }
   if (err) {
-    return <Typography variant='h3' color='error'>Something went wrong :( </Typography> 
+    return <Typography variant='h3' color='error'>Something went wrong :( Try to relogin or refresh. </Typography> 
   }
   return (
     <Stack
