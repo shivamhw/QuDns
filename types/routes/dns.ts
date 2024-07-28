@@ -6,6 +6,8 @@ export interface CreateRecordParams {
   }
   
 export type UpdateRecordParams = CreateRecordParams & { record_id: string };
+export type UpdateRecordResponse = CreateRecordParams & { record_id: string };
+
 
 export type DeleteRecordParams = {
     record_id: string;

@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
   binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
 }
 
@@ -14,22 +14,27 @@ datasource db {
 model User {
   id      String    @id @map("_id")
   email   String    @unique
-  name    String?
+  name    String
+  records Records[]
+  Domain  Domain[]
 }
 
 model Records {
-  id     String @id @map("_id")
-  cname  String @unique
-  ip     String
-  userId String
-  rootDomain  String
-  zone_id   String?
-  domain  Domain  @relation(fields: [rootDomain], references: [rootDnsName])
+  id         String @id @map("_id")
+  fqdn       String @unique
+  refers     String
+  userEmail  String
+  user       User   @relation(fields: [userEmail], references: [email])
+  rootDomain String
+  domain     Domain @relation(fields: [rootDomain], references: [rootDnsName])
 }
 
 model Domain {
-  id          String  @id @map("_id")
-  rootDnsName String  @unique
+  id          String    @id @map("_id")
+  rootDnsName String    @unique
   records     Records[]
-  zone_id     String?
+  zone_id     String
+  ownerEmail  String
+  owner       User      @relation(fields: [ownerEmail], references: [email])
+  enabled     Boolean
 }

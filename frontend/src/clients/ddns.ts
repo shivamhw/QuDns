@@ -3,7 +3,7 @@ import { listDomain } from "../../../types/ddns";
 import axiosRetry from "axios-retry"
 import { Records } from "@prisma/client";
 import Cookies from "js-cookie";
-import { DeleteRecordParams, UpdateRecordParams } from '../../../types/routes/dns';
+import { DeleteRecordParams, UpdateRecordParams, UpdateRecordResponse } from '../../../types/routes/dns';
 import { error } from "console";
 
 
@@ -124,12 +124,12 @@ export class ddns{
     }
 
     public async updateRecord(req : UpdateRecordParams){
-        const res = await this.client.put<UpdateRecordParams>("/user/records", req)
-        return res.data
+        const res = await this.client.put<UpdateRecordResponse>("/user/records", req)
+        return res
     }
     public async deleteRecord(req : DeleteRecordParams){
         const res = await this.client.delete<DeleteRecordParams>("/user/records/"+req.record_id)
-        return res.data
+        return res
     }
 }
 

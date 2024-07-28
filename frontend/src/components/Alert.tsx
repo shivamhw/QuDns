@@ -14,17 +14,5 @@ export default function DescriptionAlerts({alert} : {alert: alertProp}) {
         <AlertTitle>{alert.title}</AlertTitle>
         {alert.msg}
       </Alert>
-    //   <Alert severity="info">
-    //     <AlertTitle>Info</AlertTitle>
-    //     This is an info Alert with an informative title.
-    //   </Alert>
-    //   <Alert severity="warning">
-    //     <AlertTitle>Warning</AlertTitle>
-    //     This is a warning Alert with a cautious title.
-    //   </Alert>
-    //   <Alert severity="error">
-    //     <AlertTitle>Error</AlertTitle>
-    //     This is an error Alert with a scary title.
-    //   </Alert>
   );
 }

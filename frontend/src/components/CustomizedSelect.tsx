@@ -53,11 +53,14 @@ export default function CustomizedSelects() {
       setRootDomain(d);
     }
   };
-
+  console.log("error me hu", isSignedIn, isLoaded)
   if (!ddns) {
     return <Typography variant='h3' color='error'>backend connectivity failed :(</Typography> 
   }
   if (err) {
+    if(!isSignedIn){
+      return <Typography variant='h3' color='error'>Please SignIn</Typography> 
+    }
     return <Typography variant='h3' color='error'>Something went wrong :( Try to relogin or refresh. </Typography> 
   }
   return (

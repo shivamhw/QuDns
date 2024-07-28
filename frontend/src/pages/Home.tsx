@@ -1,10 +1,10 @@
 import React from 'react'
 import Stack from '@mui/material/Stack';
 import CustomizedSelects from '../components/CustomizedSelect';
-import { useUser } from '@clerk/clerk-react';
 import ResponsiveAppBar from '../components/AppBar';
-import { Typography } from '@mui/material';
+import { Paper, Typography } from '@mui/material';
 import ErrorBoundary from '../components/ErrorBoundary';
+import Footer from '../components/Footer';
 function App() {
   return (
     <>
@@ -25,6 +25,7 @@ function App() {
         </CustomizedSelects>
         </ErrorBoundary>
       </Stack>
+      <Footer></Footer>
     </>
   )
 }
