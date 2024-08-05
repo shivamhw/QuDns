@@ -12,29 +12,30 @@ datasource db {
 }
 
 model User {
-  id      String    @id @map("_id")
-  email   String    @unique
+  id      String   @id @map("_id")
+  email   String   @unique
   name    String
-  records Records[]
+  records Record[]
   Domain  Domain[]
 }
 
-model Records {
+model Record {
   id         String @id @map("_id")
   fqdn       String @unique
   refers     String
   userEmail  String
-  user       User   @relation(fields: [userEmail], references: [email])
   rootDomain String
-  domain     Domain @relation(fields: [rootDomain], references: [rootDnsName])
+  zone_id    String
+  user       User   @relation(fields: [userEmail], references: [email])
+  domain Domain @relation(fields: [rootDomain], references: [rootDnsName])
 }
 
 model Domain {
-  id          String    @id @map("_id")
-  rootDnsName String    @unique
-  records     Records[]
+  id          String   @id @map("_id")
+  rootDnsName String   @unique
+  records     Record[]
   zone_id     String
   ownerEmail  String
-  owner       User      @relation(fields: [ownerEmail], references: [email])
+  owner       User     @relation(fields: [ownerEmail], references: [email])
   enabled     Boolean
 }

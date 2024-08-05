@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from "axios";
 import { CFRoot, Result } from "../types/cloudflare";
-import { DeleteRecordParams } from "../types/routes/dns";
+import { DeleteRecordParams } from "../service/recordService";
 
 export class CloudFlare {
   private TTL: number = 3600;

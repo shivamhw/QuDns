@@ -1,8 +1,6 @@
 import { Request, Response, Router } from "express";
 import authMiddleware from '../middleware'
-import { listRecordsByUser, updateRecord } from "../../db/db";
-import { cf } from "../../lib/cloudflare";
-
+import recordService from '../../service/recordService'
 
 
 export const router = Router();
@@ -15,9 +13,9 @@ router.get("/ip", async (req: Request, res: Response) => {
     if(!userEmail || !cname){
         return res.status(400).send({msg: "email not passed"})
     }
-    const r = await listRecordsByUser(userEmail);
-    const db_res = r.find((item ) => {
-        return item.cname == cname
+    const r = await recordService.getRecordsForUser(userEmail);
+    const db_res = r.data?.find((item ) => {
+        return item.fqdn == cname
     })
     if(!db_res){
         return res.status(404).send(
@@ -37,17 +35,19 @@ router.put("/ip", async (req: Request, res: Response) => {
     if(!userEmail || !cname || !ip ){
         return res.status(400).send({msg: "email not passed"})
     }
-    const r = await listRecordsByUser(userEmail);
-    const db_res = r.find((item ) => {
-        return item.cname == cname
+    const r = await recordService.getRecordsForUser(userEmail);
+    const db_res = r.data?.find((item ) => {
+        return item.fqdn == cname
     })
     if(!db_res){
         return res.status(400).send({msg: "invalid record id"})
     }
-    const cf_res = await cf.updateDnsRecord(ip, db_res.cname, db_res.id, db_res.zone_id || "");
-    if (!cf_res.success) {
-      return res.status(404).send(JSON.stringify(cf_res.errors));
-    }
-    const db_r = await updateRecord(db_res.id, ip)
-    res.send(db_r);
+    const resp = await recordService.updateRecord(userEmail, {
+        zone_id: db_res.zone_id,
+        record_id: db_res.id,
+        ip: ip,
+        rootdomain: db_res.rootDomain,
+        fqdn: db_res.fqdn
+    })
+    res.status(resp.code).send(resp);
 })

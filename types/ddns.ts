@@ -1,5 +1,7 @@
+import { Domain } from "@prisma/client";
+
 export type listDomain = {
-    id: string;
-    rootDnsName: string;
-    zone_id: string | null;
+    msg: string
+    
 }
+

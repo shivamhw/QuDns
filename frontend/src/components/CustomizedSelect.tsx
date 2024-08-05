@@ -3,7 +3,6 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import { listDomain } from '../../../types/ddns';
 import LoadingButton from '@mui/lab/LoadingButton';
 import Stack from '@mui/material/Stack';
 import { useUser } from '@clerk/clerk-react';
@@ -12,16 +11,17 @@ import Resutls from './Results';
 import { result } from './Results';
 import { BootstrapInput } from '../styles/componant_styles';
 import { Typography } from '@mui/material';
+import { Domain } from '@prisma/client';
 
 
 export default function CustomizedSelects() {
   const [subdomain, setSubDomain] = React.useState("");
-  const [rootdomain, setRootDomain] = React.useState<listDomain>({
+  const [rootdomain, setRootDomain] = React.useState({
     rootDnsName: "",
     zone_id: "",
     id: ""
   })
-  const [domains, setDomains] = React.useState<listDomain[]>([]);
+  const [domains, setDomains] = React.useState<Domain[]>([]);
   const [result, setResult] = React.useState<result>()
   const [err, setErr] = React.useState<boolean>(false);
   const userContext = React.useContext(UserContext);
@@ -32,7 +32,7 @@ export default function CustomizedSelects() {
     const updater = async () => {
       try{
       const r = await ddns?.listDomains()
-      setDomains(r || [])
+      setDomains(r?.data || [])
     }
     catch(err){
       console.log("setting domain failed")
@@ -53,7 +53,7 @@ export default function CustomizedSelects() {
       setRootDomain(d);
     }
   };
-  console.log("error me hu", isSignedIn, isLoaded)
+  
   if (!ddns) {
     return <Typography variant='h3' color='error'>backend connectivity failed :(</Typography> 
   }
